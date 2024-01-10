@@ -1,15 +1,11 @@
 from flask import Flask, request, jsonify, current_app, g as app_ctx
 import socket
 import time
-import struct
-import tarfile
 import os
 import shutil
 import flask
 import numpy as np
-import cv2
 import pyvista as pv
-import multiprocessing
 from pathlib import Path
 import cv2
 import open3d as o3d
@@ -45,17 +41,17 @@ def icp_registration(source_path, target_path):
                              [0.0, 1.0, 0.0, 0.0],
                              [0.0, 0.0, 1.0, 0.0],
                              [0.0, 0.0, 0.0, 1.0]])
-    draw_registration_result(source_pc, target_pc, trans_init)
+    # draw_registration_result(source_pc, target_pc, trans_init)
     # point-to-point ICP registration
     threshold = 100
     reg_p2p = o3d.pipelines.registration.registration_icp(
         source_pc, target_pc, threshold, trans_init,
         o3d.pipelines.registration.TransformationEstimationPointToPoint(),
         o3d.pipelines.registration.ICPConvergenceCriteria(max_iteration=2000))
-    draw_registration_result(source_pc, target_pc, reg_p2p.transformation)
+    # draw_registration_result(source_pc, target_pc, reg_p2p.transformation)
 
-    source_pc_icp = source_pc.transform(reg_p2p.transformation)
-    o3d.io.write_point_cloud("output/icp.stl", source_pc_icp, write_ascii=True)
+    # source_pc_icp = source_pc.transform(reg_p2p.transformation)
+    # o3d.io.write_point_cloud("output/icp.stl", source_pc_icp, write_ascii=True)
 
     return reg_p2p.transformation
 
