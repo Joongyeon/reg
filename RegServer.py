@@ -54,7 +54,7 @@ def icp_registration(source_path, target_path):
         # save_ply("source_previous.ply", source_pc_prev.points)
         # save_ply("target_after.ply", target_pc.points)
 
-        draw_registration_result(source_pc, target_pc, np.transpose(prev_mat))
+        # draw_registration_result(source_pc, target_pc, np.transpose(prev_mat))
 
         # point-to-point ICP registration
         threshold = 100
@@ -63,7 +63,7 @@ def icp_registration(source_path, target_path):
             o3d.pipelines.registration.TransformationEstimationPointToPoint(),
             o3d.pipelines.registration.ICPConvergenceCriteria(max_iteration=2000))
 
-        draw_registration_result(source_pc_prev, target_pc, reg_p2p.transformation)
+        # draw_registration_result(source_pc_prev, target_pc, reg_p2p.transformation)
 
         source_pc_final = source_pc_prev.transform(reg_p2p.transformation)
         # save_ply("source_after.ply", source_pc_final.points)
@@ -77,14 +77,14 @@ def icp_registration(source_path, target_path):
                                  [0.0, 1.0, 0.0, 0.0],
                                  [0.0, 0.0, 1.0, 0.0],
                                  [0.0, 0.0, 0.0, 1.0]])
-        draw_registration_result(source_pc, target_pc, trans_init)
+        # draw_registration_result(source_pc, target_pc, trans_init)
         # point-to-point ICP registration
         threshold = 100
         reg_p2p = o3d.pipelines.registration.registration_icp(
             source_pc, target_pc, threshold, trans_init,
             o3d.pipelines.registration.TransformationEstimationPointToPoint(),
             o3d.pipelines.registration.ICPConvergenceCriteria(max_iteration=2000))
-        draw_registration_result(source_pc, target_pc, reg_p2p.transformation)
+        # draw_registration_result(source_pc, target_pc, reg_p2p.transformation)
 
     # source_pc_icp = source_pc.transform(reg_p2p.transformation)
     # o3d.io.write_point_cloud("output/icp.ply", source_pc_icp, write_ascii=True)
@@ -903,5 +903,5 @@ if __name__ == "__main__":
     # HL2_pc = save_pclouds(path)
 
     IP = socket.gethostbyname(socket.gethostname())
-    app.run(host="192.168.0.45")
+    # app.run(host="192.168.0.45")
     app.run(host='0.0.0.0', debug=True)
