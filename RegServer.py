@@ -16,13 +16,9 @@ import imageio.v3 as iio
 import struct
 import torch
 import facer
-from shapely.geometry import Point
-from shapely.geometry.polygon import Polygon
 import multiprocessing
 import ast
 from tqdm import tqdm
-from matplotlib import pyplot as plt
-import imageio
 
 
 app = Flask(__name__)
