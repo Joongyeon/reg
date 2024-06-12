@@ -769,8 +769,8 @@ def print_depth():
 
     add_header('inputs/Depth Long Throw/' + str(timestamp) + ".pgm")
     add_header('inputs/Depth Long Throw/' + str(timestamp) + "_ab.pgm")
-    # remove_background('inputs/Depth Long Throw/' + str(timestamp) + ".pgm")
-    # remove_background('inputs/Depth Long Throw/' + str(timestamp) + "_ab.pgm")
+    remove_background('inputs/Depth Long Throw/' + str(timestamp) + ".pgm")
+    remove_background('inputs/Depth Long Throw/' + str(timestamp) + "_ab.pgm")
 
     return "ok"
 
@@ -904,4 +904,4 @@ if __name__ == "__main__":
 
     IP = socket.gethostbyname(socket.gethostname())
     # app.run(host="192.168.0.45")
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=False)
